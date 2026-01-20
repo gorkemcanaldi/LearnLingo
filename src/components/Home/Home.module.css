@@ -1,0 +1,86 @@
+.home {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home_left_div {
+  width: 656px;
+  height: 432px;
+  border-radius: 30px;
+  background-color: #f8f8f8;
+  padding-left: 64px;
+  padding-top: 98px;
+}
+.home_title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  width: 548px;
+  text-align: start;
+  padding-bottom: 32px;
+}
+
+.home_title_span {
+  font-style: italic;
+  font-weight: 400;
+  background-color: #fbe9ba;
+}
+
+.home_desc {
+  font-weight: 400;
+  width: 471px;
+  font-size: 16px;
+  line-height: 138%;
+  letter-spacing: -0.02em;
+  padding-bottom: 64px;
+}
+
+.home_buton {
+  cursor: pointer;
+  width: 267px;
+  height: 60px;
+  text-align: center;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--btn_color);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.home_footer {
+  display: flex;
+  align-items: center;
+  padding-left: 122px;
+  padding-right: 123px;
+  width: 1065px;
+  height: 116px;
+  justify-content: space-between;
+  border: 2px dashed var(--btn_color);
+  border-radius: 30px;
+}
+
+.home_footer_div {
+  height: 36px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.home_foot_h3 {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 114%;
+  letter-spacing: -0.02em;
+}
+
+.home_span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  width: 74px;
+  color: rgba(18, 20, 23, 0.7);
+}
