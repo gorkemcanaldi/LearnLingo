@@ -4,11 +4,13 @@ import Home from "./components/Home/Home";
 import Teachers from "./components/Teachers/Teachers";
 import NoPage from "./components/NoPage/NoPage";
 import Favorites from "./components/Favorites/Favorites";
+import Headers from "./components/Headers/Headers";
 
 function App() {
   return (
     <>
       <div>
+        <Headers />
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<Teachers />} path="/teachers" />
