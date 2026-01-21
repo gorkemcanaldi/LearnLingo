@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Headers.module.css";
 import { NavLink } from "react-router-dom";
+import AuthModal from "../modals/AuthModal";
 
 function Headers() {
+  const [user, setUser] = useState(null);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState("login");
+
   return (
     <>
       <div className={style.headers}>
@@ -32,10 +37,56 @@ function Headers() {
           >
             Teachers
           </NavLink>
+          {user && (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? `${style.link} ${style.link_active}` : style.link
+              }
+              to={"/favorites"}
+            >
+              Favorites
+            </NavLink>
+          )}
         </div>
 
         <div>
           <img src="/log-in-out.svg" alt="log-in-out-icon" />
+          {isAuthOpen && (
+            <AuthModal
+              mode={authMode}
+              onClose={() => setIsAuthOpen(false)}
+              onAuth={(data) => {
+                setUser(data);
+              }}
+            />
+          )}
+          {!user && (
+            <>
+              <button
+                onClick={() => {
+                  setAuthMode("login");
+                  setIsAuthOpen(true);
+                }}
+              >
+                Login
+              </button>
+
+              <button
+                onClick={() => {
+                  setAuthMode("register");
+                  setIsAuthOpen(true);
+                }}
+              >
+                Register
+              </button>
+            </>
+          )}
+
+          {user && (
+            <>
+              <button onClick={() => setUser(null)}>Log out</button>
+            </>
+          )}
         </div>
       </div>
     </>
