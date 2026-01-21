@@ -49,6 +49,9 @@
   font-weight: 700;
   font-size: 18px;
 }
+.home_buton:hover {
+  background-color: #fbe9ba;
+}
 
 .home_footer {
   display: flex;

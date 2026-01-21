@@ -1,0 +1,77 @@
+.modal_backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 20, 23, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: absolute;
+  width: 436px;
+  border-radius: 30px;
+  padding: 64px;
+  background-color: #fff;
+}
+
+.modal_div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.modal_head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.modal_input {
+  width: 400px;
+  height: 20px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 138%;
+}
+
+.modal_input:focus {
+  outline: none;
+  border: 1px solid var(--btn_color);
+}
+
+.modal_button {
+  width: 438px;
+  height: 60px;
+  border-radius: 12px;
+  background-color: var(--btn_color);
+  margin-top: 22px;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+}
+.modal_button:hover {
+  background: #ffdc86;
+}
+
+.modal_quit {
+  position: relative;
+  bottom: 40px;
+  left: 40px;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.modal_quit:hover {
+  color: var(--btn_color);
+}

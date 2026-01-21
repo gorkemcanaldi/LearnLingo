@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./Headers.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthModal from "../modals/AuthModal";
 
 function Headers() {
@@ -8,10 +8,12 @@ function Headers() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState("login");
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={style.headers}>
-        <div className={style.headers_logo}>
+        <div className={style.headers_logo} onClick={() => navigate("/")}>
           <img
             src="/learn_lingo_logo.svg"
             alt="learn-lingo-logo"
@@ -49,8 +51,12 @@ function Headers() {
           )}
         </div>
 
-        <div>
-          <img src="/log-in-out.svg" alt="log-in-out-icon" />
+        <div className={style.headers_div}>
+          <img
+            className={style.log_icon}
+            src="/log-in-out.svg"
+            alt="log-in-out-icon"
+          />
           {isAuthOpen && (
             <AuthModal
               mode={authMode}
@@ -63,8 +69,9 @@ function Headers() {
           {!user && (
             <>
               <button
+                className={style.login_button}
                 onClick={() => {
-                  setAuthMode("login");
+                  setAuthMode("log in");
                   setIsAuthOpen(true);
                 }}
               >
@@ -72,12 +79,13 @@ function Headers() {
               </button>
 
               <button
+                className={style.register_button}
                 onClick={() => {
                   setAuthMode("register");
                   setIsAuthOpen(true);
                 }}
               >
-                Register
+                Registration
               </button>
             </>
           )}
