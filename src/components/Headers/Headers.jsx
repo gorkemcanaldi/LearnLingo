@@ -93,7 +93,9 @@ function Headers() {
 
           {user && (
             <>
-              <button onClick={logoutUser}>Log out</button>
+              <button className={style.login_button} onClick={logoutUser}>
+                Log out
+              </button>
             </>
           )}
         </div>
