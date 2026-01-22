@@ -59,6 +59,11 @@
   color: #fff;
   background-color: #121417;
   cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.register_button:hover {
+  opacity: 0.7;
 }
 
 .login_button {
