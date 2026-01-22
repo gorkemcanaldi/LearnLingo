@@ -3,6 +3,7 @@ import style from "./AuthModal.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { loginUser, registerUser } from "../../firebase/auth";
 
 const loginSchema = yup.object({
   email: yup.string().email("Geçersiz email").required("Email zorunlu"),
@@ -15,7 +16,7 @@ const registerSchema = yup.object({
   password: yup.string().min(6, "En az 6 karakter").required("Şifre zorunlu"),
 });
 
-function AuthModal({ mode, onClose, onAuth }) {
+function AuthModal({ mode, onClose }) {
   const schema = mode === "login" ? loginSchema : registerSchema;
 
   const {
@@ -35,9 +36,18 @@ function AuthModal({ mode, onClose, onAuth }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
-  const onSubmit = (data) => {
-    onAuth(data);
-    onClose();
+  const onSubmit = async (data) => {
+    try {
+      if (mode === "login") {
+        await loginUser(data.email, data.password);
+      } else {
+        await registerUser(data.email, data.password, data.name);
+      }
+
+      onClose();
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
