@@ -4,7 +4,7 @@ const initialState = {
   allTeachers: [],
   teachersLoad: [],
   favorites: [],
-  laading: false,
+  loading: false,
 };
 
 const teachersSlice = createSlice({
@@ -12,7 +12,7 @@ const teachersSlice = createSlice({
   initialState,
   reducers: {
     setAllTeachers: (s, a) => {
-      s.laading = true;
+      s.loading = true;
       s.allTeachers = a.payload;
       s.teachersLoad = a.payload.slice(0, 4);
       s.loading = false;
@@ -28,7 +28,7 @@ const teachersSlice = createSlice({
       }
     },
     removeFavorite: (s, a) => {
-      s.favorites.filter((id) => id !== a.payload);
+      s.favorites = s.favorites.filter((id) => id !== a.payload);
     },
     setFavorites: (s, a) => {
       s.favorites = a.payload;
