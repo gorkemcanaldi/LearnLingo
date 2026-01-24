@@ -9,7 +9,7 @@ function Home() {
       <div className={style.home}>
         <div className={style.home_left_div}>
           <h2 className={style.home_title}>
-            Unlock your potential with the best{" "}
+            Unlock your potential with the best
             <span className={style.home_title_span}>language</span> tutors
           </h2>
           <p className={style.home_desc}>

@@ -2,9 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allTeachers: [],
-  teachersLoad: [],
   favorites: [],
+  visibleCount: 4,
   loading: false,
+  filters: {
+    languages: "",
+    levels: "",
+    price: null,
+  },
 };
 
 const teachersSlice = createSlice({
@@ -14,13 +19,11 @@ const teachersSlice = createSlice({
     setAllTeachers: (s, a) => {
       s.loading = true;
       s.allTeachers = a.payload;
-      s.teachersLoad = a.payload.slice(0, 4);
+      s.visibleCount = 4;
       s.loading = false;
     },
     loadMore: (s) => {
-      const currentLenght = s.teachersLoad.length;
-      const more = s.allTeachers.slice(currentLenght, currentLenght + 4);
-      s.teachersLoad = [...s.teachersLoad, ...more];
+      s.visibleCount += 4;
     },
     addFavorite: (s, a) => {
       if (!s.favorites.includes(a.payload)) {
@@ -33,6 +36,22 @@ const teachersSlice = createSlice({
     setFavorites: (s, a) => {
       s.favorites = a.payload;
     },
+    setLanguageFilter: (s, a) => {
+      s.filters.languages = a.payload;
+      s.visibleCount = 4;
+    },
+    setLevelFilter: (s, a) => {
+      s.filters.levels = a.payload;
+      s.visibleCount = 4;
+    },
+    setPriceFilter: (s, a) => {
+      s.filters.price = a.payload ? Number(a.payload) : null;
+      s.visibleCount = 4;
+    },
+    clearFilters: (s) => {
+      s.filters = { languages: "", levels: "", price: null };
+      s.visibleCount = 4;
+    },
   },
 });
 
@@ -42,6 +61,10 @@ export const {
   removeFavorite,
   setFavorites,
   loadMore,
+  setLanguageFilter,
+  setLevelFilter,
+  setPriceFilter,
+  clearFilters,
 } = teachersSlice.actions;
 
 export default teachersSlice.reducer;

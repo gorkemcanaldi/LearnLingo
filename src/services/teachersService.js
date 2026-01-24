@@ -10,12 +10,12 @@ export const fetchTeachersDB = async () => {
       return [];
     }
     const data = snapshot.val();
-    const teachersArray = Object.keys(data).map((key) => ({
-      id: key,
-      ...data[key],
+    const teacherData = data.map((teacher, index) => ({
+      id: index.toString(),
+      ...teacher,
     }));
 
-    return teachersArray;
+    return teacherData;
   } catch (error) {
     console.error("firebase teachers fetch error:", error);
     throw error;
