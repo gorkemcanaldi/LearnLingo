@@ -1,0 +1,111 @@
+.card {
+  display: flex;
+  background-color: #fff;
+  width: 1100px;
+  border-radius: 24px;
+  gap: 48px;
+  margin-top: 32px;
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-bottom: 24px;
+}
+
+.img_green {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: #38cd3e;
+  position: absolute;
+  left: 90px;
+  margin-bottom: 70px;
+  border: 2px solid #fff;
+}
+
+.img_div {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  border: 3px solid #fbe9ba;
+}
+.card_img {
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+}
+.card_stat {
+  display: flex;
+  gap: 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.card_div {
+  display: flex;
+  height: 56px;
+}
+
+.book_span {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.card_h3 {
+  font-size: 24px;
+  line-height: 100%;
+  font-weight: 500;
+}
+
+.card_name {
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+  gap: 8px;
+}
+
+.name_span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+}
+
+.card_price {
+  color: #38cd3e;
+}
+
+.icon {
+  padding-top: 3px;
+}
+.heart {
+  margin-left: 35px;
+  cursor: pointer;
+}
+
+.teacher_head {
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+}
+
+.teacher_head_span {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #121417;
+  font-weight: 500;
+}
+.teacher_head_span_ {
+  text-decoration-skip-ink: none;
+  font-weight: 500;
+  color: #121417;
+}
+.feature {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

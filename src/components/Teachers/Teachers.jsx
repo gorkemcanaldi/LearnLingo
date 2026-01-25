@@ -40,7 +40,7 @@ function Teachers() {
   });
 
   const visibleTeachers = filteredTeachers.slice(0, visibleCount);
-
+  console.log(visibleTeachers);
   return (
     <>
       <div>
