@@ -1,0 +1,70 @@
+.filters {
+  display: flex;
+  gap: 20px;
+  padding-left: 128px;
+  margin: 20px auto;
+  display: flex;
+
+  width: 1184px;
+  padding-left: 128px;
+  padding-right: 128px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 74px;
+}
+
+.filter_span {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.filters_select {
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+  padding-right: 20px;
+}
+
+.filters_select:hover {
+  border-color: var(--btn_color);
+}
+
+.filters_select:focus {
+  outline: none;
+  border-color: var(--btn_color);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.filters_opt {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: rgba(18, 20, 23, 0.2);
+}
+
+.filters_select option {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: rgba(18, 20, 23, 0.2);
+}
+.filters_select .filters_opt:hover {
+  background-color: #fff;
+}
+
+.filters_select option:checked {
+  color: #121417;
+}

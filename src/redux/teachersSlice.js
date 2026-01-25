@@ -45,7 +45,7 @@ const teachersSlice = createSlice({
       s.visibleCount = 4;
     },
     setPriceFilter: (s, a) => {
-      s.filters.price = a.payload ? Number(a.payload) : null;
+      s.filters.price = a.payload === "" ? null : Number(a.payload);
       s.visibleCount = 4;
     },
     clearFilters: (s) => {

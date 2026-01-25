@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTeachersDB } from "../../services/teachersService";
 import { setAllTeachers } from "../../redux/teachersSlice";
 import Filters from "../Filters/Filters";
+import TeachersCard from "../TeachersCard/TeachersCard";
 
 function Teachers() {
   const dispatch = useDispatch();
@@ -24,8 +25,7 @@ function Teachers() {
 
   const allLanguages = [...new Set(allTeachers.flatMap((t) => t.languages))];
   const allLevels = [...new Set(allTeachers.flatMap((t) => t.levels))];
-  const priceOptions = [10, 20, 30, 40, 50];
-
+  const priceOptions = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
   const filteredTeachers = allTeachers.filter((teacher) => {
     const matchLanguage =
       !filters.languages || teacher.languages.includes(filters.languages);
@@ -34,7 +34,7 @@ function Teachers() {
       !filters.levels || teacher.levels.includes(filters.levels);
 
     const matchPrice =
-      filters.price === null || teacher.price_per_hour <= filters.price;
+      filters.price === null || teacher.price_per_hour === filters.price;
 
     return matchLanguage && matchLevel && matchPrice;
   });
@@ -42,23 +42,27 @@ function Teachers() {
   const visibleTeachers = filteredTeachers.slice(0, visibleCount);
 
   return (
-    <div>
-      <Filters
-        languages={allLanguages}
-        levels={allLevels}
-        price={priceOptions}
-      />
-      {visibleTeachers.map((t) => (
-        <div key={t.id}>
-          <h3>
-            {t.name} {t.surname}
-          </h3>
-          <p>Languages: {t.languages.join(", ")}</p>
-          <p>Levels: {t.levels.join(", ")}</p>
-          <p>Price: ${t.price_per_hour}</p>
+    <>
+      <div>
+        <Filters
+          languages={allLanguages}
+          levels={allLevels}
+          price={priceOptions}
+        />
+      </div>
+      {visibleTeachers.length === 0 ? (
+        <div>
+          <h2>There are no teachers that match this filter.</h2>
+          <p>Try adjusting your filters to see more results.</p>
         </div>
-      ))}
-    </div>
+      ) : (
+        <>
+          {visibleTeachers.map((t) => (
+            <TeachersCard key={t.id} teacher={t} />
+          ))}
+        </>
+      )}
+    </>
   );
 }
 
