@@ -24,7 +24,7 @@ function TeachersCard({ teacher }) {
 
   const handleFavoriteClick = () => {
     if (!user) {
-      toast.info("Please login to add favorites ❤️");
+      toast.info("Please login to add favorites ♥");
       return;
     }
 
@@ -73,7 +73,9 @@ function TeachersCard({ teacher }) {
           <LevelsList levels={teacher.levels} />
 
           {showMore && (
-            <button onClick={handleBookLesson}>Book trial lesson</button>
+            <button className={style.book_trial} onClick={handleBookLesson}>
+              Book trial lesson
+            </button>
           )}
           {showModal && (
             <TrialLessonModal

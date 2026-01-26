@@ -37,9 +37,7 @@ function TrialLessonModal({ teacher, onClose }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
-  const onSubmit = (data) => {
-    console.log("Trial lesson data:", data);
-
+  const onSubmit = () => {
     toast.success("Trial lesson request sent successfully!");
     onClose();
   };
@@ -48,7 +46,7 @@ function TrialLessonModal({ teacher, onClose }) {
     <div className={style.modal_backdrop} onClick={onClose}>
       <div className={style.modal} onClick={(e) => e.stopPropagation()}>
         <div className={style.modal_head}>
-          <h2>Book trial lesson</h2>
+          <h2 className={style.modal_h2}>Book trial lesson</h2>
           <button onClick={onClose} className={style.modal_close}>
             ✕
           </button>
@@ -60,10 +58,21 @@ function TrialLessonModal({ teacher, onClose }) {
         </p>
 
         <div className={style.teacherInfo}>
-          <span>Your teacher</span>
-          <p>
-            {teacher.name} {teacher.surname}
-          </p>
+          <div>
+            <img
+              className={style.modal_avatar}
+              src={teacher.avatar_url}
+              alt="avatar"
+              width={44}
+              height={44}
+            />
+          </div>
+          <div>
+            <span className={style.modal_span}>Your teacher</span>
+            <p className={style.teacher_p}>
+              {teacher.name} {teacher.surname}
+            </p>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
@@ -74,7 +83,12 @@ function TrialLessonModal({ teacher, onClose }) {
 
             {reasons.map((reason) => (
               <label key={reason} className={style.radioItem}>
-                <input type="radio" value={reason} {...register("reason")} />
+                <input
+                  className={style.modal_radio}
+                  type="radio"
+                  value={reason}
+                  {...register("reason")}
+                />
                 {reason}
               </label>
             ))}
@@ -85,7 +99,7 @@ function TrialLessonModal({ teacher, onClose }) {
           </div>
 
           <input
-            className={style.input}
+            className={style.input_}
             type="text"
             placeholder="Full Name"
             {...register("name")}
@@ -93,7 +107,7 @@ function TrialLessonModal({ teacher, onClose }) {
           {errors.name && <p className={style.error}>{errors.name.message}</p>}
 
           <input
-            className={style.input}
+            className={style.input_}
             type="email"
             placeholder="Email"
             {...register("email")}
@@ -103,7 +117,7 @@ function TrialLessonModal({ teacher, onClose }) {
           )}
 
           <input
-            className={style.input}
+            className={style.input_}
             type="tel"
             placeholder="Phone number"
             {...register("phone")}
@@ -112,7 +126,7 @@ function TrialLessonModal({ teacher, onClose }) {
             <p className={style.error}>{errors.phone.message}</p>
           )}
 
-          <button type="submit" className={style.submitBtn}>
+          <button type="submit" className={style.submit_btn}>
             Book
           </button>
         </form>

@@ -4,3 +4,33 @@
   align-items: center;
   margin-right: 40px;
 }
+
+.load_more {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  border-radius: 12px;
+  border: none;
+  width: 183px;
+  height: 60px;
+  transition: background-color 0.4s ease;
+  background-color: var(--btn_color);
+}
+.load_more:hover {
+  background-color: #fbe9ba;
+}
+
+.load_div {
+  margin-top: 64px;
+  margin-bottom: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 280px;
+  margin-right: 100px;
+}

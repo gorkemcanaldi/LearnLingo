@@ -4,19 +4,19 @@ function CardInfo({ teacher }) {
   return (
     <>
       <p className={style.teacher_head}>
-        Speaks:{" "}
+        Speaks:
         <span className={style.teacher_head_span}>
           {teacher.languages.join(", ")}
         </span>
       </p>
 
       <p className={style.teacher_head}>
-        Lesson Info:{" "}
+        Lesson Info:
         <span className={style.teacher_head_span_}>{teacher.lesson_info}</span>
       </p>
 
       <p className={style.teacher_head}>
-        Conditions:{" "}
+        Conditions:
         <span className={style.teacher_head_span_}>{teacher.conditions}</span>
       </p>
     </>

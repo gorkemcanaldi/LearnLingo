@@ -206,3 +206,21 @@
   display: flex;
   align-items: center;
 }
+
+.book_trial {
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 232px;
+  height: 60px;
+  background-color: var(--btn_color);
+  border: none;
+  margin-top: 32px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  transition: background-color 0.4s ease;
+}
+
+.book_trial:hover {
+  background-color: #fbe9ba;
+}

@@ -1,24 +1,32 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTeachersDB } from "../../services/teachersService";
-import { setAllTeachers } from "../../redux/teachersSlice";
+import {
+  loadMore,
+  setAllTeachers,
+  setLoading,
+} from "../../redux/teachersSlice";
 import Filters from "../Filters/Filters";
 import TeachersCard from "../TeachersCard/TeachersCard";
 import style from "./Teachers.module.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Teachers() {
   const dispatch = useDispatch();
 
-  const { visibleCount, allTeachers, filters } = useSelector((s) => s.teachers);
+  const { visibleCount, allTeachers, filters, loading } = useSelector(
+    (s) => s.teachers,
+  );
 
   useEffect(() => {
     const loadTeachers = async () => {
       try {
+        dispatch(setLoading(true));
         const teachers = await fetchTeachersDB();
-
         dispatch(setAllTeachers(teachers));
       } catch (error) {
         console.log("Teachers yüklenemdi:", error);
+        dispatch(setLoading(false));
       }
     };
     loadTeachers();
@@ -51,7 +59,11 @@ function Teachers() {
           price={priceOptions}
         />
       </div>
-      {visibleTeachers.length === 0 ? (
+      {loading ? (
+        <div className={style.spinner_container}>
+          <ClipLoader color="#F4C550" size={60} />
+        </div>
+      ) : visibleTeachers.length === 0 ? (
         <div className={style.no_teachers}>
           <img src="/teacher_not.png" alt="teacher" />
           <h2>There are no teachers that match this filter.</h2>
@@ -63,6 +75,16 @@ function Teachers() {
             <TeachersCard key={t.id} teacher={t} />
           ))}
         </>
+      )}
+      {visibleCount < filteredTeachers.length && !loading && (
+        <div className={style.load_div}>
+          <button
+            onClick={() => dispatch(loadMore())}
+            className={style.load_more}
+          >
+            Load More
+          </button>
+        </div>
       )}
     </>
   );
