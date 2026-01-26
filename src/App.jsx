@@ -5,6 +5,8 @@ import Teachers from "./components/Teachers/Teachers";
 import NoPage from "./components/NoPage/NoPage";
 import Favorites from "./components/Favorites/Favorites";
 import Headers from "./components/Headers/Headers";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route element={<Favorites />} path="/favorites" />
           <Route element={<NoPage />} path="/*" />
         </Routes>
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </>
   );

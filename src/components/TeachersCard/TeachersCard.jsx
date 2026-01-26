@@ -1,90 +1,89 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import style from "./TeachersCard.module.css";
+import CardHeader from "./CardHeader";
+import CardStats from "./CardStats";
+import CardInfo from "./CardInfo";
+import CardActions from "./CardActions";
+import ReviewsList from "./ReviewsList";
+import LevelsList from "./LevelsList";
+import TrialLessonModal from "../TrialLessonModal/TrialLessonModal";
+import { listenToAuthChanges } from "../../firebase/auth";
+import { toast } from "react-toastify";
+import { addFavorite, removeFavorite } from "../../redux/teachersSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function TeachersCard({ teacher }) {
+  const [showMore, setShowMore] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const dispatch = useDispatch();
+  const favorites = useSelector((e) => e.teachers.favorites);
+
+  const isFavorite = favorites.includes(teacher.id);
+
+  const handleFavoriteClick = () => {
+    if (!user) {
+      toast.info("Please login to add favorites ❤️");
+      return;
+    }
+
+    if (isFavorite) {
+      dispatch(removeFavorite(teacher.id));
+      toast.info("Removed from favorites");
+    } else {
+      dispatch(addFavorite(teacher.id));
+      toast.success("Added to favorites");
+    }
+  };
+
+  useEffect(() => {
+    const unscruble = listenToAuthChanges((u) => {
+      setUser(u);
+    });
+    return () => unscruble();
+  }, []);
+
+  const handleBookLesson = () => {
+    if (!user) {
+      toast.info("Please login to book a trial lesson");
+
+      return;
+    }
+    setShowModal(true);
+  };
+
   return (
-    <>
-      <div className={style.card}>
-        <div className={style.img_div}>
-          <img
-            className={style.card_img}
-            src={teacher.avatar_url}
-            width="96"
-            height="96"
-            alt="avatar"
-          />
-          <div className={style.img_green}></div>
-        </div>
-        <div>
-          <div className={style.card_div}>
-            <div className={style.card_name}>
-              <span className={style.name_span}>Languages</span>
-              <h3 className={style.card_h3}>
-                {teacher.name} {teacher.surname}
-              </h3>
-            </div>
-            <div className={style.card_stat}>
-              <span className={style.book_span}>
-                <img
-                  className={style.icon}
-                  src="/book.svg"
-                  alt="book"
-                  height={16}
-                  width={16}
-                />
-                Lessons online
-              </span>
-              <p>
-                Lessons done: <span>{teacher.lessons_done}</span>
-              </p>
-              <p className={style.book_span}>
-                <img
-                  className={style.icon}
-                  src="/star.svg"
-                  alt="star"
-                  height={16}
-                  width={16}
-                />
-                Rating: <span>{teacher.rating}</span>
-              </p>
-              <p>
-                Price / 1 hour:{" "}
-                <span className={style.card_price}>
-                  {teacher.price_per_hour}$
-                </span>
-              </p>
-              <img
-                className={style.heart}
-                src="/heart.svg"
-                alt="heart"
-                width={26}
-                height={26}
-              />
-            </div>
-          </div>
-          <div className={style.feature}>
-            <p className={style.teacher_head}>
-              Speaks:{" "}
-              <span className={style.teacher_head_span}>
-                {teacher.languages.join(", ")}
-              </span>
-            </p>
-            <p className={style.teacher_head}>
-              Lesson Info:{" "}
-              <span className={style.teacher_head_span_}>
-                {teacher.lesson_info}
-              </span>
-            </p>
-            <p className={style.teacher_head}>
-              Conditions:{" "}
-              <span className={style.teacher_head_span_}>
-                {teacher.conditions}
-              </span>
-            </p>
-          </div>
+    <div className={style.card}>
+      <CardHeader teacher={teacher} />
+      <div>
+        <CardStats
+          teacher={teacher}
+          onFavoriteClick={handleFavoriteClick}
+          isFavorite={isFavorite}
+        />
+
+        <div className={style.feature}>
+          <CardInfo teacher={teacher} />
+
+          <CardActions showMore={showMore} setShowMore={setShowMore} />
+
+          {showMore && <ReviewsList reviews={teacher.reviews} />}
+
+          <LevelsList levels={teacher.levels} />
+
+          {showMore && (
+            <button onClick={handleBookLesson}>Book trial lesson</button>
+          )}
+          {showModal && (
+            <TrialLessonModal
+              teacher={teacher}
+              onClose={() => setShowModal(false)}
+            />
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

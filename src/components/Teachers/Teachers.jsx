@@ -4,6 +4,7 @@ import { fetchTeachersDB } from "../../services/teachersService";
 import { setAllTeachers } from "../../redux/teachersSlice";
 import Filters from "../Filters/Filters";
 import TeachersCard from "../TeachersCard/TeachersCard";
+import style from "./Teachers.module.css";
 
 function Teachers() {
   const dispatch = useDispatch();
@@ -51,7 +52,8 @@ function Teachers() {
         />
       </div>
       {visibleTeachers.length === 0 ? (
-        <div>
+        <div className={style.no_teachers}>
+          <img src="/teacher_not.png" alt="teacher" />
           <h2>There are no teachers that match this filter.</h2>
           <p>Try adjusting your filters to see more results.</p>
         </div>
