@@ -36,13 +36,18 @@ function Favorites() {
   if (loading) {
     return (
       <div className={style.spinner_container}>
-        <ClipLoader color="#F4C550" size={60} />
+        <ClipLoader color="#3498db" size={60} />
       </div>
     );
   }
 
   if (favTeachers.length === 0) {
-    return <p>You have no favorite teachers yet.</p>;
+    return (
+      <div className={style.no_fav}>
+        <img src="/teacher_not.png" alt="teacher" width={300} height={300} />
+        <p className={style.fav_desc}>You have no favorite teachers yet.</p>;
+      </div>
+    );
   }
 
   return (

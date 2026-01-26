@@ -4,3 +4,18 @@
   margin-top: 330px;
   margin-right: 90px;
 }
+
+.no_fav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 114px;
+  margin-right: 40px;
+}
+
+.fav_desc {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+}

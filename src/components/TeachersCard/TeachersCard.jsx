@@ -21,7 +21,6 @@ function TeachersCard({ teacher }) {
   const favorites = useSelector((e) => e.teachers.favorites);
 
   const isFavorite = favorites.includes(teacher.id);
-
   const handleFavoriteClick = () => {
     if (!user) {
       toast.info("Please login to add favorites ♥");
@@ -29,10 +28,10 @@ function TeachersCard({ teacher }) {
     }
 
     if (isFavorite) {
-      dispatch(removeFavorite(teacher.id));
+      dispatch(removeFavorite({ userId: user.uid, id: teacher.id }));
       toast.info("Removed from favorites");
     } else {
-      dispatch(addFavorite(teacher.id));
+      dispatch(addFavorite({ userId: user.uid, id: teacher.id }));
       toast.success("Added to favorites");
     }
   };

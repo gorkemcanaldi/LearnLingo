@@ -25,12 +25,7 @@ function Home() {
           </button>
         </div>
         <div>
-          <img
-            src="/public/home.png"
-            alt="home_girl"
-            width={568}
-            height={530}
-          />
+          <img src="/home.png" alt="home_girl" width={568} height={530} />
         </div>
         <div className={style.home_footer}>
           <div className={style.home_footer_div}>

@@ -49,7 +49,6 @@ function Teachers() {
   });
 
   const visibleTeachers = filteredTeachers.slice(0, visibleCount);
-  console.log(visibleTeachers);
   return (
     <>
       <div>
@@ -65,9 +64,8 @@ function Teachers() {
         </div>
       ) : visibleTeachers.length === 0 ? (
         <div className={style.no_teachers}>
-          <img src="/teacher_not.png" alt="teacher" />
+          <img src="/teacher_not.png" alt="teacher" width={300} height={300} />
           <h2>There are no teachers that match this filter.</h2>
-          <p>Try adjusting your filters to see more results.</p>
         </div>
       ) : (
         <>

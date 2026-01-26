@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import style from "./TrialLessonModal.module.css";
 
-const schema = yup.object({
+const schema = yup.object().shape({
   reason: yup.string().required("Please select a reason"),
   name: yup.string().required("Name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -27,17 +27,12 @@ function TrialLessonModal({ teacher, onClose }) {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onBlur",
+    reValidateMode: "onChange",
   });
 
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
-
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    console.log("Form data:", data);
     toast.success("Trial lesson request sent successfully!");
     onClose();
   };
