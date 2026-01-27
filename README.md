@@ -1,16 +1,78 @@
-# React + Vite
+# LearnLingo 🎓
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project was developed using **React + Vite** as a language learning platform.  
+Users can browse teachers, apply filters, add them to favorites, and book trial lessons.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+### 🛣️ Routes
+- `/` → **Home**
+- `/teachers` → **Teachers**
+- `/favorites` → **Favorites** (visible after login)
+- `*` → **NoPage (404)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🖼️ Header
+- On the left: **LearnLingo logo** and "LearnLingo" → `/`
+- In the center: **Home** → `/`
+- Next to it: **Teachers** → `/teachers`
+- On the right: **Login** and **Register** buttons (open modals)
+- After login/register → **Logout** button
+- Successful login/register → **Toast notification**
+- After login → **Favorites** route appears
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🏠 Home Page
+- **Get Started** button → redirects to `/teachers`.
+
+---
+
+## 👩‍🏫 Teachers Page
+- Teachers are fetched from **Firebase**.
+- Displayed in a **4-card grid**.
+- **Filters (optional):**
+  - Language
+  - Level
+  - Price
+- If no filter is applied → default 4 teachers are shown.
+- **Load More** button:
+  - If filters applied → +4 matching teachers
+  - If no filters → +4 default teachers
+- Card content:
+  - Teacher info (language, level, price, rating, description)
+  - **Read More** → shows user reviews and ratings
+  - **Book Trial Lesson** → modal opens after login
+    - Radio input: asks why the user wants to learn a language
+    - Form: Full name, Email, Phone (React Hook Form + Yup)
+    - **Toast:** "Trial lesson request sent successfully!"
+  - Top-right **Favorite icon**:
+    - Turns yellow when clicked → **Toast:** "Added to favorites"
+    - Favorites are visible on `/favorites` after login
+    - Removing → **Toast:** "Removed from favorites"
+    - Login required for adding/removing favorites
+
+---
+
+## ⭐ Favorites Page
+- Displays the user’s saved favorite teachers.
+- Teachers can be removed from favorites.
+- **Loading state:** `react-spinners` show until data is fetched.
+
+---
+
+## ⚙️ State Management
+- Built with **Redux Toolkit**.
+- Favorites and filters managed via **Redux**.
+- **LocalStorage** used to persist favorites.
+
+---
+
+## 🛠️ Technologies
+- **React + Vite**
+- **Firebase**
+- **Redux Toolkit**
+- **React Hook Form + Yup**
+- **React Toastify**
+- **React Spinners**
