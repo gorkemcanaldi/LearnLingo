@@ -14,7 +14,13 @@ const loginSchema = yup.object({
 const registerSchema = yup.object({
   name: yup.string().required("İsim zorunlu"),
   email: yup.string().email("Geçersiz email").required("Email zorunlu"),
-  password: yup.string().min(6, "En az 6 karakter").required("Şifre zorunlu"),
+  password: yup
+    .string()
+    .min(6, "En az 6 karakter")
+    .required("Şifre zorunlu")
+    .matches(/[A-Z]/, "En az 1 büyük harf içermeli")
+    .matches(/[0-9]/, "En az 1 rakam içermeli")
+    .matches(/[.\-_]/, "En az 1 özel karakter içermeli (., -, _)"),
 });
 
 function AuthModal({ mode, onClose }) {
